@@ -28,14 +28,14 @@ app.get('/location', (request, res) => {
     const location = result.geometry.location;
     const formAddr = result.formatted_address;
     const searchquery = result.address_components[0].long_name.toLowerCase();
-   
+
     locationSubmitted = new Geolocation(searchquery, formAddr, location);
     res.send(locationSubmitted);
   })
 
-  . catch(error => {
-    console.error('catch on weather ', error)
-  })
+    .catch(error => {
+      console.error('catch on weather ', error)
+    })
 
 });
 
@@ -58,9 +58,9 @@ app.get('/weather', (request, response) => {
     console.log(weatherArr);
 
   })
-  . catch(error => {
-    console.error('catch on weather ', error)
-  })
+    .catch(error => {
+      console.error('catch on weather ', error)
+    })
 })
 
 // FORECAST CONSTRUCTOR FUNCTION
@@ -78,20 +78,22 @@ app.get('/events', (request, response) => {
       return new Event(event.url, event.title, event.start_time, event.description);
     })
     response.send(eventData);
-  }). catch(error => {
+  }).catch(error => {
     console.error('catch on events ', error)
   })
 })
 
 // EVENTS CONSTRUCTOR FUNCTION
-function Event(link, name, event_date, summary='none') {
+function Event(link, name, event_date, summary = 'none') {
   this.link = link,
-  this.name = name,
-  this.event_date = event_date,
-  this.summary = summary
+    this.name = name,
+    this.event_date = event_date,
+    this.summary = summary
 }
 
 // LISTEN
 app.listen(PORT, () => {
   console.log(`App is on PORT: ${PORT}`);
 });
+
+
